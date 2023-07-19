@@ -1,0 +1,27 @@
+{
+  "name": "maa-common",
+  "scripts": {
+    "watch": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --watch --sourcemap",
+    "build": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --minify",
+    "package": "pkg . -C GZip"
+  },
+  "bin": "dist/scripts/index.js",
+  "pkg": {
+    "scripts": "dist/scripts/index.js",
+    "assets": "dist/build/**/*",
+    "targets": [
+      "node18-macos-x64",
+      "node18-win-x64",
+      "node18-linux-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.0",
+    "esbuild": "^0.18.14",
+    "pkg": "^5.8.1"
+  }
+}

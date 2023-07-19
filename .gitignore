@@ -1,0 +1,16 @@
+# Nodejs
+node_modules
+.DS_Store
+
+# Installed
+bin
+include
+
+# Runtime
+debug
+
+# Assets
+koffi
+
+# Build
+dist
