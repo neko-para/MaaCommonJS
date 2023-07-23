@@ -1,8 +1,24 @@
 import koffi from 'koffi'
 import { MaaCallback, load } from './proxy'
 import { ControllerOption, GlobalOption } from './enum'
+import path from 'path'
 
-const lib = load('bin/libMaaFramework.dylib')
+const plat = process.platform
+const name: Record<string, string> = {
+  win32: 'MaaFramework.dll',
+  linux: './bin/libMaaFramework.so',
+  darwin: './bin/libMaaFramework.dylib'
+}
+
+if (plat === 'win32') {
+  const kernel = koffi.load('kernel32.dll')
+  kernel.stdcall('int32 SetDefaultDllDirectories(uint32)')(0x1000)
+  kernel.stdcall('int32 AddDllDirectory(str16)')(
+    path.join(process.cwd(), 'bin')
+  )
+}
+
+const lib = load(name[plat])
 
 export class Maa {
   static setLogging(path: string) {

@@ -1,5 +1,45 @@
 import koffi from 'koffi'
 
+export const MaaRect = koffi.struct('Rect', {
+  x: 'int32',
+  y: 'int32',
+  width: 'int32',
+  height: 'int32'
+})
+
+export const MaaImage = koffi.struct('Image', {
+  rows: 'int32',
+  cols: 'int32',
+  type: 'int32',
+  data: 'void*'
+})
+
+export const MaaRecognitionResult = koffi.struct('RecognitionResult', {
+  box: MaaRect,
+  detail: 'char [1048560]'
+})
+
+export const MaaRecognizerAnalyzeCallback = koffi.proto(
+  'uint8 MaaRecognizerAnalyzeCallback(RecognitionResult*, const Image*, const char*)'
+)
+
+export const MaaCustomRecognizerAPI = koffi.struct('CustomRecognizerAPI', {
+  analyze: 'MaaRecognizerAnalyzeCallback*'
+})
+
+export const MaaActionRunCallback = koffi.proto(
+  'uint8 MaaActionRunCallback(const char*, const Rect*, const char*)'
+)
+
+export const MaaActionStopCallback = koffi.proto(
+  'uint8 MaaActionStopCallback()'
+)
+
+export const MaaCustomActionAPI = koffi.struct('CustomActionAPI', {
+  run: 'MaaActionRunCallback*',
+  stop: 'MaaActionStopCallback*'
+})
+
 export const MaaCallback = koffi.proto(
   'void MaaCallback(const char*, const char*, intptr)'
 )
@@ -62,6 +102,19 @@ const funcTable = {
   BindResource: 'uint8 MaaBindResource(InstanceHandle*, ResourceHandle*)',
   BindController: 'uint8 MaaBindController(InstanceHandle*, ControllerHandle*)',
   Inited: 'uint8 MaaInited(InstanceHandle*)',
+
+  RegisterCustomRecognizer:
+    'uint8 MaaRegisterCustomRecognizer(InstanceHandle*, const char*, CustomRecognizerAPI*)',
+  UnregisterCustomRecognizer:
+    'uint8 MaaUnregisterCustomRecognizer(InstanceHandle*, const char*)',
+  ClearCustomRecognizer: 'uint8 MaaClearCustomRecognizer(InstanceHandle*)',
+
+  RegisterCustomAction:
+    'uint8 MaaRegisterCustomAction(InstanceHandle*, const char*, CustomActionAPI*)',
+  UnregisterCustomAction:
+    'uint8 MaaUnregisterCustomAction(InstanceHandle*, const char*)',
+  ClearCustomAction: 'uint8 MaaClearCustomAction(InstanceHandle*)',
+
   // custom task related
   PostTask: 'int64 MaaPostTask(InstanceHandle*, const char*, const char*)',
   SetTaskParam: 'uint8 MaaSetTaskParam(InstanceHandle*, int64, const char*)',

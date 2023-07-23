@@ -5,6 +5,8 @@ node_modules
 # Installed
 bin
 include
+lib
+share
 
 # Runtime
 debug

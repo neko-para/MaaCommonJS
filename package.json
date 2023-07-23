@@ -1,6 +1,7 @@
 {
   "name": "maa-common",
   "scripts": {
+    "run": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --sourcemap && node dist/scripts/index.js",
     "watch": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --watch --sourcemap",
     "build": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --minify",
     "package": "pkg . -C GZip"
