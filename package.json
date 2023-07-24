@@ -2,10 +2,8 @@
   "name": "maa-common",
   "type": "module",
   "scripts": {
-    "run": "esbuild packages/tui/src/index.tsx --outdir=dist/scripts --bundle --platform=node --format=esm --sourcemap && node dist/scripts/index.js",
-    "watch": "esbuild packages/tui/src/index.tsx --outdir=dist/scripts --bundle --platform=node --format=esm --watch --sourcemap",
-    "build": "esbuild packages/tui/src/index.ts --outdir=dist/scripts --bundle --platform=node --minify",
-    "package": "pkg . -C GZip"
+    "build": "cd packages/cli && npm run build",
+    "dev": "cd packages/cli && npm run dev"
   },
   "bin": "dist/scripts/index.js",
   "pkg": {
@@ -20,10 +18,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "devDependencies": {
-    "@tsconfig/node20": "^20.1.0",
-    "esbuild": "^0.18.14",
-    "pkg": "^5.8.1"
-  }
+  ]
 }

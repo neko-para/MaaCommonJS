@@ -18,7 +18,7 @@ if (plat === 'win32') {
   )
 }
 
-const lib = load(name[plat])
+const lib = load(name[plat]!)
 
 export class Maa {
   static setLogging(path: string) {
@@ -63,18 +63,19 @@ export class MaaController {
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
       const sid = `${dt.id}`
-      if (inst) {
+      const task = inst?.task[sid]
+      if (task) {
         switch (msg) {
           case 'Controller.Action.Started':
-            inst.task[sid].state = 'started'
+            task.state = 'started'
             break
           case 'Controller.Action.Completed':
-            inst.task[sid].state = 'completed'
-            inst.task[sid].resolve(true)
+            task.state = 'completed'
+            task.resolve(true)
             break
           case 'Controller.Action.Failed':
-            inst.task[sid].state = 'failed'
-            inst.task[sid].resolve(false)
+            task.state = 'failed'
+            task.resolve(false)
             break
         }
       }
@@ -91,7 +92,7 @@ export class MaaController {
   wait(id: number | bigint): Promise<boolean> {
     const sid = `${id}`
     if (sid in this.task) {
-      return this.task[sid].promise
+      return this.task[sid]!.promise
     } else {
       const [pro, res] = (() => {
         let r: (s: boolean) => void = () => {}
@@ -216,18 +217,19 @@ export class MaaResource {
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
       const sid = `${dt.id}`
-      if (inst) {
+      const task = inst?.task[sid]
+      if (task) {
         switch (msg) {
           case 'Resource.StartLoading':
-            inst.task[sid].state = 'started'
+            task.state = 'started'
             break
           case 'Resource.LoadingCompleted':
-            inst.task[sid].state = 'completed'
-            inst.task[sid].resolve(true)
+            task.state = 'completed'
+            task.resolve(true)
             break
           case 'Resource.LoadingError':
-            inst.task[sid].state = 'failed'
-            inst.task[sid].resolve(false)
+            task.state = 'failed'
+            task.resolve(false)
             break
         }
       }
@@ -241,7 +243,7 @@ export class MaaResource {
   wait(id: number | bigint): Promise<boolean> {
     const sid = `${id}`
     if (sid in this.task) {
-      return this.task[sid].promise
+      return this.task[sid]!.promise
     } else {
       const [pro, res] = (() => {
         let r: (s: boolean) => void = () => {}
@@ -292,22 +294,23 @@ export class MaaInstance {
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
       const sid = `${dt.id}`
-      if (inst) {
+      const task = inst?.task[sid]
+      if (task) {
         switch (msg) {
           case 'Task.Started':
-            inst.task[sid].state = 'started'
+            task.state = 'started'
             break
           case 'Task.Completed':
-            inst.task[sid].state = 'completed'
-            inst.task[sid].resolve(true)
+            task.state = 'completed'
+            task.resolve(true)
             break
           case 'Task.Failed':
-            inst.task[sid].state = 'failed'
-            inst.task[sid].resolve(false)
+            task.state = 'failed'
+            task.resolve(false)
             break
           case 'Task.Stopped':
-            inst.task[sid].state = 'stopped'
-            inst.task[sid].resolve(false)
+            task.state = 'stopped'
+            task.resolve(false)
             break
         }
       }
@@ -321,7 +324,7 @@ export class MaaInstance {
   wait(id: number | bigint): Promise<boolean> {
     const sid = `${id}`
     if (sid in this.task) {
-      return this.task[sid].promise
+      return this.task[sid]!.promise
     } else {
       const [pro, res] = (() => {
         let r: (s: boolean) => void = () => {}
