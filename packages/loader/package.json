@@ -1,5 +1,6 @@
 {
   "name": "@maa/loader",
+  "type": "module",
   "main": "src/index.ts",
   "devDependencies": {
     "@tsconfig/node20": "^20.1.0",

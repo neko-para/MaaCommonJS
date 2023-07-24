@@ -1,9 +1,10 @@
 {
   "name": "maa-common",
+  "type": "module",
   "scripts": {
-    "run": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --sourcemap && node dist/scripts/index.js",
-    "watch": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --watch --sourcemap",
-    "build": "esbuild packages/server/src/index.ts --outdir=dist/scripts --bundle --platform=node --minify",
+    "run": "esbuild packages/tui/src/index.tsx --outdir=dist/scripts --bundle --platform=node --format=esm --sourcemap && node dist/scripts/index.js",
+    "watch": "esbuild packages/tui/src/index.tsx --outdir=dist/scripts --bundle --platform=node --format=esm --watch --sourcemap",
+    "build": "esbuild packages/tui/src/index.ts --outdir=dist/scripts --bundle --platform=node --minify",
     "package": "pkg . -C GZip"
   },
   "bin": "dist/scripts/index.js",

@@ -12,7 +12,11 @@ share
 debug
 
 # Assets
+assets
 koffi
 
 # Build
 dist
+
+# Runtime
+config.json

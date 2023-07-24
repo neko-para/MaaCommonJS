@@ -1,6 +1,6 @@
 import koffi from 'koffi'
-import { MaaCallback, load } from './proxy'
-import { ControllerOption, GlobalOption } from './enum'
+import { MaaCallback, load } from './proxy.js'
+import { ControllerOption, GlobalOption } from './enum.js'
 import path from 'path'
 
 const plat = process.platform
@@ -211,7 +211,7 @@ export class MaaResource {
     koffi.unregister(this.callback)
   }
 
-  static create(usr_path: string, callback: MaaCallback): MaaResource {
+  static create(callback: MaaCallback): MaaResource {
     let inst: MaaResource | null = null
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
@@ -234,7 +234,7 @@ export class MaaResource {
       // TODO: delete from task
       callback(msg, dt)
     }, koffi.pointer(MaaCallback))
-    inst = new MaaResource(lib.ResourceCreate(usr_path, cb, 0), cb)
+    inst = new MaaResource(lib.ResourceCreate(cb, 0), cb)
     return inst
   }
 

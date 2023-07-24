@@ -50,8 +50,7 @@ export type MaaCallback = (
 ) => void
 
 const funcTable = {
-  ResourceCreate:
-    'ResourceHandle* MaaResourceCreate(const char*, MaaCallback*, intptr)',
+  ResourceCreate: 'ResourceHandle* MaaResourceCreate(MaaCallback*, intptr)',
   ResourceDestroy: 'void MaaResourceDestroy(ResourceHandle*)',
   ResourcePostResource:
     'int64 MaaResourcePostResource(ResourceHandle*, const char*)',
