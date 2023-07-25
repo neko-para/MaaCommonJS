@@ -22,6 +22,21 @@ export const setGlobalConfigContext = createContext<Updater<GlobalConfig>>(
   () => {}
 )
 
+export type TaskRunningState = {
+  readonly tasks: {
+    name: string
+    state: 'pending' | 'loading' | 'success' | 'error'
+  }[]
+}
+
+export const taskRunningStateContext = createContext<TaskRunningState>({
+  tasks: []
+})
+
+export const setTaskRunningStateContext = createContext<
+  Updater<TaskRunningState>
+>(() => {})
+
 export type LogInfo = {
   readonly log: string[]
 }

@@ -3,10 +3,13 @@ import React, { useEffect } from 'react'
 import {
   GlobalConfig,
   LogInfo,
+  TaskRunningState,
   globalConfigContext,
   logInfoContext,
   setGlobalConfigContext,
-  setLogInfoContext
+  setLogInfoContext,
+  setTaskRunningStateContext,
+  taskRunningStateContext
 } from './state.js'
 import { useImmer } from 'use-immer'
 import { Config } from './config.js'
@@ -15,6 +18,7 @@ import ActionView from './views/ActionView.js'
 import { Box } from 'ink'
 import TaskInfoView from './views/TaskInfoView.js'
 import LogView from './views/LogView.js'
+import TaskRunningView from './views/TaskRunningView.js'
 
 export function App() {
   const [globalConfig, setGlobalConfig] = useImmer<GlobalConfig>({
@@ -22,6 +26,9 @@ export function App() {
     address: '127.0.0.1:5555',
     game: '1999',
     tasks: {}
+  })
+  const [taskRunningState, setTaskRunningState] = useImmer<TaskRunningState>({
+    tasks: []
   })
   const [logInfo, setLogInfo] = useImmer<LogInfo>({ log: [] })
 
@@ -47,18 +54,23 @@ export function App() {
   return (
     <globalConfigContext.Provider value={globalConfig}>
       <setGlobalConfigContext.Provider value={setGlobalConfig}>
-        <logInfoContext.Provider value={logInfo}>
-          <setLogInfoContext.Provider value={setLogInfo}>
-            <Box>
-              <Box flexDirection="column">
-                <ConfigView></ConfigView>
-                <ActionView></ActionView>
-                <TaskInfoView></TaskInfoView>
-              </Box>
-              <LogView></LogView>
-            </Box>
-          </setLogInfoContext.Provider>
-        </logInfoContext.Provider>
+        <taskRunningStateContext.Provider value={taskRunningState}>
+          <setTaskRunningStateContext.Provider value={setTaskRunningState}>
+            <logInfoContext.Provider value={logInfo}>
+              <setLogInfoContext.Provider value={setLogInfo}>
+                <Box>
+                  <Box flexDirection="column">
+                    <ConfigView></ConfigView>
+                    <ActionView></ActionView>
+                    <TaskInfoView></TaskInfoView>
+                    <TaskRunningView></TaskRunningView>
+                  </Box>
+                  <LogView></LogView>
+                </Box>
+              </setLogInfoContext.Provider>
+            </logInfoContext.Provider>
+          </setTaskRunningStateContext.Provider>
+        </taskRunningStateContext.Provider>
       </setGlobalConfigContext.Provider>
     </globalConfigContext.Provider>
   )
