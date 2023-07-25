@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-devtools-core/dist/backend.js b/node_modules/react-devtools-core/dist/backend.js
+index b17dd1c..66b6d22 100644
+--- a/node_modules/react-devtools-core/dist/backend.js
++++ b/node_modules/react-devtools-core/dist/backend.js
+@@ -7,7 +7,7 @@
+ 		exports["ReactDevToolsBackend"] = factory();
+ 	else
+ 		root["ReactDevToolsBackend"] = factory();
+-})(self, () => {
++})(void 0, () => {
+ return /******/ (() => { // webpackBootstrap
+ /******/ 	var __webpack_modules__ = ({
+ 

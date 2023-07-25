@@ -62,8 +62,7 @@ export class MaaController {
     let inst: MaaController | null = null
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
-      const sid = `${dt.id}`
-      const task = inst?.task[sid]
+      const task = inst?.task[`${dt?.id}`]
       if (task) {
         switch (msg) {
           case 'Controller.Action.Started':
@@ -216,8 +215,7 @@ export class MaaResource {
     let inst: MaaResource | null = null
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
-      const sid = `${dt.id}`
-      const task = inst?.task[sid]
+      const task = inst?.task[`${dt?.id}`]
       if (task) {
         switch (msg) {
           case 'Resource.StartLoading':
@@ -293,8 +291,7 @@ export class MaaInstance {
     let inst: MaaInstance | null = null
     const cb = koffi.register((msg: string, detail: string) => {
       const dt = JSON.parse(detail)
-      const sid = `${dt.id}`
-      const task = inst?.task[sid]
+      const task = inst?.task[`${dt?.id}`]
       if (task) {
         switch (msg) {
           case 'Task.Started':

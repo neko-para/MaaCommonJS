@@ -10,13 +10,16 @@
   ],
   "dependencies": {
     "ink": "^4.1.0",
+    "ink-text-input": "^5.0.1",
     "react": "^18.2.0"
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^3.0.1",
     "@types/react": "^18.0.32",
     "chalk": "^5.2.0",
+    "esm": "^3.2.25",
     "prettier": "^2.8.7",
+    "react-devtools-core": "^4.28.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.3"
   }

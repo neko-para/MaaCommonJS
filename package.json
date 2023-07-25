@@ -1,14 +1,14 @@
 {
   "name": "maa-common",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "cd packages/cli && npm run build",
-    "dev": "cd packages/cli && npm run dev"
+    "build": "node scripts/build.js",
+    "dev": "node scripts/watch.js",
+    "pack": "node scripts/pack.js"
   },
-  "bin": "dist/scripts/index.js",
+  "bin": "dist/scripts/loader.js",
   "pkg": {
-    "scripts": "dist/scripts/index.js",
-    "assets": "dist/build/**/*",
     "targets": [
       "node18-macos-x64",
       "node18-win-x64",
@@ -18,5 +18,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "esbuild": "^0.18.16",
+    "patch-package": "^7.0.2"
+  }
 }
