@@ -1,21 +1,17 @@
 import { TaskTemplate } from './task.js'
 
-export const templates: TaskTemplate[] = [
-  {
-    desc: '收取荒原',
-    type: 'Wilderness'
+export const templates: Record<string, TaskTemplate> = {
+  Wilderness: {
+    desc: '收取荒原'
   },
-  {
-    desc: '领取奖励',
-    type: 'Awards'
+  Awards: {
+    desc: '领取奖励'
   },
-  {
-    desc: '每日心相（意志解析）',
-    type: 'Psychube'
+  Psychube: {
+    desc: '每日心相（意志解析）'
   },
-  {
+  Combat: {
     desc: '3-9 厄险（百灵百验鸟）',
-    type: 'Combat',
     param: {
       diff_task: {
         EnterTheShow: {
@@ -33,6 +29,6 @@ export const templates: TaskTemplate[] = [
       }
     }
   }
-]
+}
 
 export const assets = 'assets'

@@ -9,9 +9,11 @@
     "dist"
   ],
   "dependencies": {
+    "immer": "^10.0.2",
     "ink": "^4.1.0",
     "ink-text-input": "^5.0.1",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "use-immer": "^0.9.0"
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^3.0.1",

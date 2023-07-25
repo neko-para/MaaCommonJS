@@ -8,22 +8,26 @@ import {
   MaaResource
 } from '@maa/loader'
 import { MaaCallback } from '@maa/loader/src/proxy.js'
-import { config } from './config.js'
 
 export interface Task {
   name: string
+  enable: boolean
   type: string
   param?: Record<string, unknown>
 }
 
 export interface TaskTemplate {
   desc: string
-  type: string
   param?: Record<string, unknown>
 }
 
-export async function runTask(assets: string, tasks: Task[]) {
-  console.log('running!')
+export async function runTask(
+  assets: string,
+  adb: string,
+  address: string,
+  tasks: Task[],
+  logger: (msg: string, details: Record<string, unknown>) => void
+) {
   const root = path.join(process.cwd(), assets)
 
   Maa.setLogging(path.join(root, 'debug'))
@@ -34,14 +38,14 @@ export async function runTask(assets: string, tasks: Task[]) {
   )
 
   const logCallback: MaaCallback = (msg, details) => {
-    // console.log(msg, details)
+    logger(msg, details)
   }
 
   const hMaa = MaaInstance.create(logCallback)
   const hRes = MaaResource.create(logCallback)
   const hCtrl = MaaController.createAdb(
-    config.adb,
-    config.address,
+    adb,
+    address,
     AdbControllerType.Input_Preset_Adb |
       AdbControllerType.Screencap_RawWithGzip,
     adbConfig,
