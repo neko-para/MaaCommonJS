@@ -13,6 +13,7 @@ debug
 
 # Assets
 assets
+node
 koffi
 
 # Build
@@ -20,3 +21,7 @@ dist
 
 # Runtime
 config.json
+
+# ToInst
+MaaCommonJS
+*.zip

@@ -19,6 +19,7 @@ import { Box } from 'ink'
 import TaskInfoView from './views/TaskInfoView.js'
 import LogView from './views/LogView.js'
 import TaskRunningView from './views/TaskRunningView.js'
+import GameTargetView from './views/GameTargetView.js'
 
 export function App() {
   const [globalConfig, setGlobalConfig] = useImmer<GlobalConfig>({
@@ -60,6 +61,7 @@ export function App() {
               <setLogInfoContext.Provider value={setLogInfo}>
                 <Box>
                   <Box flexDirection="column">
+                    <GameTargetView></GameTargetView>
                     <ConfigView></ConfigView>
                     <ActionView></ActionView>
                     <TaskInfoView></TaskInfoView>

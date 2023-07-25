@@ -10,5 +10,6 @@ esbuild.build({
   external: ['koffi'],
   banner: {
     js: 'const require = (await import("node:module")).createRequire(import.meta.url)'
-  }
+  },
+  minify: true
 })

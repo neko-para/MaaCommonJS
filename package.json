@@ -4,17 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "node scripts/watch.js",
-    "pack": "node scripts/pack.js"
-  },
-  "bin": "dist/scripts/loader.js",
-  "pkg": {
-    "targets": [
-      "node18-macos-x64",
-      "node18-win-x64",
-      "node18-linux-x64"
-    ],
-    "outputPath": "dist"
+    "dev": "node scripts/watch.js"
   },
   "workspaces": [
     "packages/*"

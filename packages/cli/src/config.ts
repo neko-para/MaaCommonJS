@@ -1,5 +1,5 @@
+import fs from 'fs'
 import { Task, TaskTemplate } from './task.js'
-import * as _1999 from './1999.js'
 
 export interface Config {
   adb: string
@@ -16,6 +16,4 @@ export const Preset: Record<
     templates: Record<string, TaskTemplate>
     assets: string
   }
-> = {
-  '1999': _1999
-}
+> = JSON.parse(fs.readFileSync('preset.json', 'utf-8'))
