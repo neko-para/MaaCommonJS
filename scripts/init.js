@@ -1,5 +1,7 @@
 const fs = require('fs')
 
+// koffi
+
 const version = JSON.parse(fs.readFileSync('package-lock.json')).packages[
   'node_modules/koffi'
 ].version
@@ -22,3 +24,11 @@ for (const a of archs) {
     copy(`koffi_${p}_${a}`, 'koffi')
   }
 }
+
+// yoga
+
+fs.mkdirSync('dist/scripts')
+fs.copyFileSync(
+  'node_modules/yoga-wasm-web/dist/yoga.wasm',
+  'dist/scripts/yoga.wasm'
+)
