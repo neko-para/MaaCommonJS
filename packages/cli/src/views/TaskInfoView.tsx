@@ -1,21 +1,16 @@
 import React, { useContext, useState } from 'react'
 import Group from '../components/Group.js'
 import { Box, Text, useFocus, useInput } from 'ink'
-import {
-  globalConfigContext,
-  setTaskInfoContext,
-  taskInfoContext
-} from '../state.js'
+import { globalConfigContext, setGlobalConfigContext } from '../state.js'
 import { Preset } from '../config.js'
 
 export default function TaskInfoView() {
   const { isFocused } = useFocus()
-  const taskInfo = useContext(taskInfoContext)
-  const setTaskInfo = useContext(setTaskInfoContext)
   const globalConfig = useContext(globalConfigContext)
-  const info = taskInfo[globalConfig.game] ?? []
-
+  const setGlobalConfig = useContext(setGlobalConfigContext)
   const [idx, setIdx] = useState(0)
+
+  const info = globalConfig.tasks[globalConfig.game] ?? []
 
   const fix = (v: number) => {
     if (info.length === 0) {
@@ -40,9 +35,9 @@ export default function TaskInfoView() {
       setIdx(fix(idx + 1))
     } else if (input === ' ') {
       if (idx !== -1) {
-        setTaskInfo(taskInfo => {
-          taskInfo[globalConfig.game]![idx]!.enable =
-            !taskInfo[globalConfig.game]![idx]!.enable
+        setGlobalConfig(cfg => {
+          cfg.tasks[globalConfig.game]![idx]!.enable =
+            !cfg.tasks[globalConfig.game]![idx]!.enable
         })
       }
     }

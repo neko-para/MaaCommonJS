@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import Group from '../components/Group.js'
 import { Box, Text } from 'ink'
 import TextInput from '../components/TextInput.js'
-import { adbConfigContext, setAdbConfigContext } from '../state.js'
+import { globalConfigContext, setGlobalConfigContext } from '../state.js'
 
 export default function ConfigView() {
-  const adbConfig = useContext(adbConfigContext)
-  const setAdbConfig = useContext(setAdbConfigContext)
+  const globalConfig = useContext(globalConfigContext)
+  const setGlobalConfig = useContext(setGlobalConfigContext)
 
   return (
     <Group title="配置">
@@ -16,17 +16,17 @@ export default function ConfigView() {
       </Box>
       <Box flexDirection="column">
         <TextInput
-          value={adbConfig.adb}
+          value={globalConfig.adb}
           onChange={v =>
-            setAdbConfig(c => {
+            setGlobalConfig(c => {
               c.adb = v
             })
           }
         ></TextInput>
         <TextInput
-          value={adbConfig.address}
+          value={globalConfig.address}
           onChange={v =>
-            setAdbConfig(c => {
+            setGlobalConfig(c => {
               c.address = v
             })
           }

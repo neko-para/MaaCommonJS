@@ -2,37 +2,25 @@ import { createContext } from 'react'
 import { Task } from './task.js'
 import { Updater } from 'use-immer'
 
-export type AdbConfig = {
+export type GlobalConfig = {
   readonly adb: string
   readonly address: string
-}
-
-export const adbConfigContext = createContext<AdbConfig>({
-  adb: '',
-  address: ''
-})
-
-export const setAdbConfigContext = createContext<Updater<AdbConfig>>(() => {})
-
-export type GlobalConfig = {
   readonly game: string
+  readonly tasks: {
+    readonly [game in string]?: Task[]
+  }
 }
 
 export const globalConfigContext = createContext<GlobalConfig>({
-  game: ''
+  adb: '',
+  address: '',
+  game: '',
+  tasks: {}
 })
 
 export const setGlobalConfigContext = createContext<Updater<GlobalConfig>>(
   () => {}
 )
-
-export type TaskInfo = {
-  readonly [game in string]?: Task[]
-}
-
-export const taskInfoContext = createContext<TaskInfo>({})
-
-export const setTaskInfoContext = createContext<Updater<TaskInfo>>(() => {})
 
 export type LogInfo = {
   readonly log: string[]

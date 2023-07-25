@@ -3,28 +3,28 @@ import Button from '../components/Button.js'
 import Group from '../components/Group.js'
 import React, { useContext } from 'react'
 import {
-  adbConfigContext,
   globalConfigContext,
-  setLogInfoContext,
-  setTaskInfoContext,
-  taskInfoContext
+  setGlobalConfigContext,
+  setLogInfoContext
 } from '../state.js'
 import { Preset } from '../config.js'
 import { Task, runTask } from '../task.js'
 
 export default function ActionView() {
   const { exit } = useApp()
-  const adbConfig = useContext(adbConfigContext)
   const globalConfig = useContext(globalConfigContext)
-  const taskInfo = useContext(taskInfoContext)
-  const setTaskInfo = useContext(setTaskInfoContext)
+  const setGlobalConfig = useContext(setGlobalConfigContext)
   const setLogInfo = useContext(setLogInfoContext)
+
   const doRunTask = () => {
+    setLogInfo(log => {
+      log.log.push('='.repeat(20))
+    })
     runTask(
       Preset[globalConfig.game]!.assets,
-      adbConfig.adb,
-      adbConfig.address,
-      taskInfo[globalConfig.game]!,
+      globalConfig.adb,
+      globalConfig.address,
+      globalConfig.tasks[globalConfig.game]!,
       (msg, detail) => {
         setLogInfo(log => {
           log.log.push(`${msg}: ${JSON.stringify(detail)}`)
@@ -33,7 +33,7 @@ export default function ActionView() {
     )
   }
   const resetTask = () => {
-    setTaskInfo(info => {
+    setGlobalConfig(cfg => {
       const tasks: Task[] = []
       const templs = Preset[globalConfig.game]?.templates
       if (templs) {
@@ -46,7 +46,7 @@ export default function ActionView() {
           })
         }
       }
-      info[globalConfig.game] = tasks
+      cfg.tasks[globalConfig.game] = tasks
     })
   }
 

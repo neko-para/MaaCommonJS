@@ -10,7 +10,7 @@ export default function LogView() {
   return (
     <Group title="日志">
       <Box flexDirection="column">
-        {logInfo.log.map((l, i) => {
+        {logInfo.log.slice(-20).map((l, i) => {
           return <Text key={i}>{l}</Text>
         })}
       </Box>
