@@ -1,6 +1,6 @@
 {
   "1999": {
-    "assets": "./assets",
+    "assets": "./1999",
     "templates": {
       "Wilderness": { "desc": "收取荒原" },
       "Awards": { "desc": "领取奖励" },

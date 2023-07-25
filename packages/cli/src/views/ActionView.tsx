@@ -31,7 +31,7 @@ export default function ActionView() {
       Preset[globalConfig.game]!.assets,
       globalConfig.adb,
       globalConfig.address,
-      globalConfig.tasks[globalConfig.game]!.filter(task => task.enable),
+      globalConfig.tasks[globalConfig.game]?.filter(task => task.enable) ?? [],
       (msg, detail) => {
         setLogInfo(log => {
           log.log.push(`${msg}: ${JSON.stringify(detail)}`)
