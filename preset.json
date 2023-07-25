@@ -11,7 +11,7 @@
           "diff_task": {
             "EnterTheShow": { "next": "MainChapter_3" },
             "TargetStageName": { "text": "09" },
-            "StawgeDifficulty": { "next": "StageDifficulty_Hard" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
             "SetReplaysTimes": { "text": "1" }
           }
         }

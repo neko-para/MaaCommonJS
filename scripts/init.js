@@ -1,4 +1,4 @@
-const fs = require('fs')
+import fs from 'fs'
 
 // koffi
 
@@ -27,7 +27,7 @@ for (const a of archs) {
 
 // yoga
 
-fs.mkdirSync('dist/scripts')
+fs.mkdirSync('dist/scripts', { recursive: true })
 fs.copyFileSync(
   'node_modules/yoga-wasm-web/dist/yoga.wasm',
   'dist/scripts/yoga.wasm'
