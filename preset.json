@@ -1,11 +1,21 @@
 {
   "1999": {
     "assets": "./1999",
-    "templates": {
-      "Wilderness": { "desc": "收取荒原" },
-      "Awards": { "desc": "领取奖励" },
-      "Psychube": { "desc": "每日心相（意志解析）" },
-      "Combat": {
+    "templates": [
+      {
+        "type": "Wilderness",
+        "desc": "收取荒原"
+      },
+      {
+        "type": "Awards",
+        "desc": "领取奖励"
+      },
+      {
+        "type": "Psychube",
+        "desc": "每日心相（意志解析）"
+      },
+      {
+        "type": "Combat",
         "desc": "3-9 厄险（百灵百验鸟）",
         "param": {
           "diff_task": {
@@ -15,7 +25,151 @@
             "SetReplaysTimes": { "text": "1" }
           }
         }
+      },
+      {
+        "type": "Combat",
+        "desc": "4-20 厄险（双头形骨架）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "MainChapter_4" },
+            "TargetStageName": { "text": "20" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "2-3 厄险（祝圣秘银）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "MainChapter_2" },
+            "TargetStageName": { "text": "03" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "3-13 厄险（盐封曼德拉）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "MainChapter_3" },
+            "TargetStageName": { "text": "13" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "4-10 厄险（啮咬盒）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "MainChapter_4" },
+            "TargetStageName": { "text": "10" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "3-11 厄险（金爪灵摆）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "MainChapter_3" },
+            "TargetStageName": { "text": "11" },
+            "StageDifficulty": { "next": "StageDifficulty_Hard" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "尘埃运动 06",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "ResourceChapter_LP" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "猪鼻美学 06",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "ResourceChapter_MA" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "丰收时令 04",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "ResourceChapter_MA" },
+            "TargetStageName": { "text": "04" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "群山之声 06（洞悉 岩）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "PromotionChapter_ME" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "星陨之所 06（洞悉 星）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "PromotionChapter_SL" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "深林之形 06（洞悉 林）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "PromotionChapter_SS" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
+      },
+      {
+        "type": "Combat",
+        "desc": "荒兽之野 06（洞悉 兽）",
+        "param": {
+          "diff_task": {
+            "EnterTheShow": { "next": "PromotionChapter_BW" },
+            "TargetStageName": { "text": "06" },
+            "StageDifficulty": { "next": "StageDifficulty_None" },
+            "SetReplaysTimes": { "text": "1" }
+          }
+        }
       }
-    }
+    ]
   }
 }

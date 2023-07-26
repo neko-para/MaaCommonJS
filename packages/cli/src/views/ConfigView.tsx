@@ -2,11 +2,30 @@ import React, { useContext } from 'react'
 import Group from '../components/Group.js'
 import { Box, Text } from 'ink'
 import TextInput from '../components/TextInput.js'
-import { globalConfigContext, setGlobalConfigContext } from '../state.js'
+import {
+  globalConfigContext,
+  setGlobalConfigContext,
+  setHelpInfoContext
+} from '../state.js'
 
 export default function ConfigView() {
   const globalConfig = useContext(globalConfigContext)
   const setGlobalConfig = useContext(setGlobalConfigContext)
+  const setHelpInfo = useContext(setHelpInfoContext)
+
+  const focusAdb = () => {
+    setHelpInfo({
+      desc: '配置adb命令',
+      key: []
+    })
+  }
+
+  const focusAddress = () => {
+    setHelpInfo({
+      desc: '配置adb连接地址',
+      key: []
+    })
+  }
 
   return (
     <Group title="配置">
@@ -22,6 +41,7 @@ export default function ConfigView() {
               c.adb = v
             })
           }
+          onFocus={focusAdb}
         ></TextInput>
         <TextInput
           value={globalConfig.address}
@@ -30,6 +50,7 @@ export default function ConfigView() {
               c.address = v
             })
           }
+          onFocus={focusAddress}
         ></TextInput>
       </Box>
     </Group>

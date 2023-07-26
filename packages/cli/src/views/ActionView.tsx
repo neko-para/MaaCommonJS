@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import {
   globalConfigContext,
   setGlobalConfigContext,
+  setHelpInfoContext,
   setLogInfoContext,
   setTaskRunningStateContext,
   taskRunningStateContext
@@ -16,9 +17,9 @@ export default function ActionView() {
   const { exit } = useApp()
   const globalConfig = useContext(globalConfigContext)
   const setGlobalConfig = useContext(setGlobalConfigContext)
-  const taskRunningState = useContext(taskRunningStateContext)
   const setTaskRunningState = useContext(setTaskRunningStateContext)
   const setLogInfo = useContext(setLogInfoContext)
+  const setHelpInfo = useContext(setHelpInfoContext)
 
   const doRunTask = () => {
     setTaskRunningState(info => {
@@ -66,27 +67,49 @@ export default function ActionView() {
   const resetTask = () => {
     setGlobalConfig(cfg => {
       const tasks: Task[] = []
-      const templs = Preset[globalConfig.game]?.templates
-      if (templs) {
-        for (const key in templs) {
-          tasks.push({
-            name: `Task ${key}`,
-            enable: true,
-            type: key,
-            ...templs[key]!
-          })
-        }
+      const templs = Preset[globalConfig.game]?.templates ?? []
+      for (const [idx, templ] of templs.entries()) {
+        tasks.push({
+          name: `Task ${idx}`,
+          enable: true,
+          ...templ!
+        })
       }
       cfg.tasks[globalConfig.game] = tasks
+    })
+  }
+
+  const focusRun = () => {
+    setHelpInfo({
+      desc: '开始执行!',
+      key: [['回车', '确认']]
+    })
+  }
+
+  const focusQuit = () => {
+    setHelpInfo({
+      desc: '退出程序',
+      key: [['回车', '确认']]
+    })
+  }
+
+  const focusReset = () => {
+    setHelpInfo({
+      desc: '从模板重置任务列表',
+      key: [['回车', '确认']]
     })
   }
 
   return (
     <Group title="操作">
       <Box gap={2}>
-        <Button text="启动" onClick={doRunTask}></Button>
-        <Button text="退出" onClick={exit}></Button>
-        <Button text="重置任务" onClick={resetTask}></Button>
+        <Button text="启动" onClick={doRunTask} onFocus={focusRun}></Button>
+        <Button text="退出" onClick={exit} onFocus={focusQuit}></Button>
+        <Button
+          text="重置任务"
+          onClick={resetTask}
+          onFocus={focusReset}
+        ></Button>
       </Box>
     </Group>
   )

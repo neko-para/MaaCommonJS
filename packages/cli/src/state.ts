@@ -37,6 +37,18 @@ export const setTaskRunningStateContext = createContext<
   Updater<TaskRunningState>
 >(() => {})
 
+export type HelpInfo = {
+  readonly desc: string
+  readonly key: [string, string][]
+}
+
+export const helpInfoContext = createContext<HelpInfo>({
+  desc: '',
+  key: []
+})
+
+export const setHelpInfoContext = createContext<Updater<HelpInfo>>(() => {})
+
 export type LogInfo = {
   readonly log: string[]
 }

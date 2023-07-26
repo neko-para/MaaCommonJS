@@ -13,7 +13,7 @@ export interface Config {
 export const Preset: Record<
   string,
   {
-    templates: Record<string, TaskTemplate>
+    templates: TaskTemplate[]
     assets: string
   }
 > = JSON.parse(fs.readFileSync('preset.json', 'utf-8'))

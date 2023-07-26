@@ -1,13 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Group from '../components/Group.js'
 import { Box, Text, useFocus, useInput } from 'ink'
-import { globalConfigContext, setGlobalConfigContext } from '../state.js'
+import {
+  globalConfigContext,
+  setGlobalConfigContext,
+  setHelpInfoContext
+} from '../state.js'
 import { Preset } from '../config.js'
 
 export default function TaskInfoView() {
   const { isFocused } = useFocus()
   const globalConfig = useContext(globalConfigContext)
   const setGlobalConfig = useContext(setGlobalConfigContext)
+  const setHelpInfo = useContext(setHelpInfoContext)
   const [idx, setIdx] = useState(0)
 
   const info = globalConfig.tasks[globalConfig.game] ?? []
@@ -43,6 +48,18 @@ export default function TaskInfoView() {
     }
   })
 
+  useEffect(() => {
+    if (isFocused) {
+      setHelpInfo({
+        desc: '配置任务是否启用',
+        key: [
+          ['空格', '切换启用'],
+          ['上下键', '切换任务']
+        ]
+      })
+    }
+  }, [isFocused])
+
   return (
     <Group title="任务列表">
       <Box gap={2}>
@@ -71,7 +88,7 @@ export default function TaskInfoView() {
           {info.map((task, i) => {
             return (
               <Text underline={idx === i && isFocused} key={task.name}>
-                {Preset[globalConfig.game]?.templates[task.type]?.desc ?? ''}
+                {task.desc}
               </Text>
             )
           })}

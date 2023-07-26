@@ -11,12 +11,14 @@ import { MaaCallback } from '@maa/loader/src/proxy.js'
 
 export interface Task {
   name: string
+  desc: string
   enable: boolean
   type: string
   param?: Record<string, unknown>
 }
 
 export interface TaskTemplate {
+  type: string
   desc: string
   param?: Record<string, unknown>
 }
